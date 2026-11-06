@@ -14,19 +14,11 @@ The installation runs an open-source model locally through Ollama and speaks the
 
 **Concept and programming:** [Marlon Barrios Solano](https://marlonbarrios.github.io/)
 
-**Live app:** [https://my-pendular-umwelt.vercel.app/](https://my-pendular-umwelt.vercel.app/)
-
 ![Landing page — the piece waiting, pendulums alive and slow](public/screenshots/01-pendular-landing-light.png)
 
 In the browser, a local open-source model (Gemma 4 by default, with thinking on, or any other Ollama model) generates short philosophical texts from a Latentwelt system prompt. **Kokoro** reads English. **Supertonic** reads Spanish, French, Portuguese, and Korean. Both voices download into the browser. Branching pendulums inscribe the words along their moving trails — letter by letter, branch by branch, generation after generation.
 
 Powered by **Ollama**, **Gemma**, **Kokoro**, **Supertonic**, and **p5.js**. Open-source models, local AI.
-
-## Live App
-
-**[https://my-pendular-umwelt.vercel.app/](https://my-pendular-umwelt.vercel.app/)**
-
-The hosted link above is the earlier OpenAI edition. This folder is the open-source local station: Ollama writes the text on your machine, and the browser speaks it. Choose English, Spanish, French, Portuguese, or Korean, press **Spacebar**, and the pendulums generate, speak, and write each passage.
 
 ## Last update
 
