@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>My LatentWelt</title>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script type="module" src="/pendulum.js"></script>
+  </head>
+  <body>
+    <div class="ui-controls">
+      <button id="theme-toggle" class="ui-button" type="button" aria-pressed="false" tabindex="-1">
+        Dark mode
+      </button>
+      <button id="sound-toggle" class="ui-button" type="button" aria-pressed="true" tabindex="-1">
+        Sound on
+      </button>
+      <button id="record-toggle" class="ui-button" type="button" aria-pressed="false" tabindex="-1">
+        Record off
+      </button>
+    </div>
+    <nav id="language-menu" class="language-menu" aria-label="Output language">
+      <span class="language-menu__hint">Select language</span>
+      <select id="language-select" class="language-menu__select" aria-label="Language">
+        <option value="en" selected>English</option>
+      </select>
+    </nav>
+    <p id="generation-status" class="generation-status" hidden aria-live="polite"></p>
+    <main></main>
+    <footer class="credits" aria-label="Credits">
+      <p>
+        <a href="/about.html">About</a>
+      </p>
+      <p>
+        <a href="https://marlonbarrios.github.io/" target="_blank" rel="noopener noreferrer">Marlon Barrios Solano</a>
+      </p>
+      <p class="credits__powered">
+        <a href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Ollama</a>
+        ·
+        <a href="https://ollama.com/library/gemma4" target="_blank" rel="noopener noreferrer">Gemma</a>
+        ·
+        <a href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener noreferrer">Kokoro</a>
+        ·
+        <a href="https://huggingface.co/onnx-community/Supertonic-TTS-2-ONNX" target="_blank" rel="noopener noreferrer">Supertonic</a>
+        ·
+        <a href="https://p5js.org/" target="_blank" rel="noopener noreferrer">p5.js</a>
+      </p>
+    </footer>
+  </body>
+</html>

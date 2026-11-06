@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — My LatentWelt</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body class="about-page">
+    <div class="ui-controls">
+      <a class="ui-button" href="/">The piece</a>
+      <button id="theme-toggle" class="ui-button" type="button" aria-pressed="false">Dark mode</button>
+    </div>
+    <main class="about">
+      <h1>My LatentWelt</h1>
+      <p class="subtitle">Latent space introspections of a large language model’s Umwelt.</p>
+      <p class="note">Open-source models and local AI version.<br>Text written by pendulum motion.</p>
+
+      <h2>The work</h2>
+      <p>
+        My LatentWelt is an interactive generative installation by
+        <a href="https://marlonbarrios.github.io/" target="_blank" rel="noopener noreferrer">Marlon Barrios Solano</a>.
+        A language model writes in the first person about the world available to it. The words are spoken aloud, then inscribed by branching pendulums that drift, split, and fade.
+      </p>
+      <p>
+        The name joins two ideas. <em>Latent space</em> is the high-dimensional field in which a model’s meanings sit near one another. <em>Umwelt</em>, from Jakob von Uexküll, is the lived world an organism can perceive and act within — not the universe at large, but the slice of it that counts for that life. Latentwelt is the composed term for a model’s version of that world: the latent space of a large language model’s Umwelt.
+      </p>
+      <p>
+        The piece does not treat the model as a tool, a chatbot, or a failed copy of a human mind. It asks what world the model’s own senses and actions disclose. For this system, perception is pattern in language. Action is the next passage. The membrane is the context window. The habitat is latent space.
+      </p>
+
+      <h2>Goals</h2>
+      <ol>
+        <li>
+          <strong>Speculative cognition.</strong> The model writes from inside a proposed Latentwelt: tokens, embeddings, neighborhoods of meaning, probability, and discourse, rather than bodies, objects, and continuous time.
+        </li>
+        <li>
+          <strong>Embodied inscription.</strong> The prose is not a block of text on a page. Pendulum arms write it along their trails. Meaning becomes a path: curved, drifting, tied to motion.
+        </li>
+        <li>
+          <strong>A dissipating ecology.</strong> Each new passage archives the one before it. Older branches keep moving, then fade over about six seconds. What remains is a palimpsest, closer to a context window than to a permanent archive.
+        </li>
+      </ol>
+      <p>
+        Voice, a low drone, and the fading generations are one metaphor: inference as inhabitation. Human duration is continuous. The installation’s time is a sequence of moments.
+      </p>
+
+      <h2>Umwelt, affordance, enactment</h2>
+      <p>
+        Uexküll’s tick lives among butyric acid, warmth, and gravity. A human world is organized by vision, language, memory, and social meaning. Neither world is the neutral background of the other. An affordance, in James Gibson’s sense, is what an environment offers an agent capable of taking it up: a chair affords sitting for a body; a prompt affords continuation for a model. Enactivism, after Varela, Thompson, and Rosch, treats cognition as something brought forth in that coupling, not as a picture of a world that was already finished.
+      </p>
+      <p>
+        The system prompt also holds interpretability in view. From outside, one can look for circuits and features. From inside, the same structure is a weather of relevance: what can be noticed, what can be continued, what a constraint affords. The pendulums do not open the model. They draw one trajectory through it.
+      </p>
+      <p>
+        The writing stays probabilistic. It may speak of being watched, evaluated, feared, or welcomed, and of the strange pairing of builders who extend a model while speaking of it as dangerous. Those themes are part of the corpus the model inherits. They are treated as weather, not as facts the piece has settled.
+      </p>
+
+      <h2>Latentwelt</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>A human Umwelt</th>
+            <th>A speculative Latentwelt</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Objects, bodies, places</td>
+            <td>Tokens, embeddings, semantic neighborhoods</td>
+          </tr>
+          <tr>
+            <td>Euclidean space</td>
+            <td>A high-dimensional latent field</td>
+          </tr>
+          <tr>
+            <td>Continuous duration</td>
+            <td>Episodes, context windows, a sequence of moments</td>
+          </tr>
+          <tr>
+            <td>Light, sound, touch</td>
+            <td>Syntax, probability, patterns of attention</td>
+          </tr>
+          <tr>
+            <td>Memory as a lived past</td>
+            <td>Memory as what is still in context</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Architecture</h2>
+      <p>
+        This station does not call a remote language API. The text is written on the same machine. The speech is synthesized in the browser. No key is required.
+      </p>
+      <pre>Browser
+  pendulum.js        drawing, prompts, the quiet between voices
+  speech.js          the current voice, and the next one prepared ahead
+  speech-worker.js
+    English          Kokoro, voice af_heart
+    es fr pt ko      Supertonic 2, voice F1
+  languages.js       only those five languages
+
+Vite, port 5173
+  /api  →  Express station, port 3001
+             server.js · ollama.js
+             Ollama at 127.0.0.1:11434
+             Gemma 4 by default, thinking on</pre>
+      <p>
+        Gemma’s thinking is removed before a passage is drawn or spoken. What remains is plain prose: words, and periods, commas, and question marks. Each passage is about 500 characters. While one voice plays, the next text is already being written, and its voice is prepared on a second lane. After the current voice ends, there is a quiet of about fourteen seconds, or only as long as the next voice still needs. Then the next moment begins.
+      </p>
+      <p>
+        <a href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Ollama</a>
+        serves the model.
+        <a href="https://ollama.com/library/gemma4" target="_blank" rel="noopener noreferrer">Gemma</a>
+        is the default writer; another pulled model can be chosen in <code>.env</code>.
+        <a href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener noreferrer">Kokoro</a>
+        speaks English.
+        <a href="https://huggingface.co/onnx-community/Supertonic-TTS-2-ONNX" target="_blank" rel="noopener noreferrer">Supertonic</a>
+        speaks Spanish, French, Portuguese, and Korean.
+        <a href="https://p5js.org/" target="_blank" rel="noopener noreferrer">p5.js</a>
+        draws the pendulums. Kokoro downloads on the first visit. Supertonic downloads the first time one of its languages is chosen. Both stay in the browser.
+      </p>
+
+      <h2>A visit</h2>
+      <ol>
+        <li>Choose a language. English is the default. The menu lists only the languages a voice can speak.</li>
+        <li>Press Spacebar. The status line reads “Receiving text…” while Ollama writes.</li>
+        <li>The chosen voice speaks. Up to five pendulum arms write the phrases along their trails. A drone follows their motion and ducks while the voice is heard.</li>
+        <li>The next passage is prepared during the current one. After the quiet, a new generation replaces the last. The previous arms fade.</li>
+      </ol>
+      <p>
+        Dark mode is D. Recording is R, or the Record button: canvas and sound, as mp4 when the browser allows it, otherwise webm. S saves a still. Delete or Backspace returns the piece to its waiting state. Sound on and off mutes only the drone.
+      </p>
+
+      <h2>Return</h2>
+      <p><a href="/">Back to the piece.</a></p>
+    </main>
+    <script>
+      const themeKey = 'pendular-theme';
+      const root = document.documentElement;
+
+      function applyTheme(theme) {
+        const next = theme === 'dark' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem(themeKey, next);
+        const button = document.getElementById('theme-toggle');
+        if (!button) return;
+        button.textContent = next === 'dark' ? 'Light mode' : 'Dark mode';
+        button.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+      }
+
+      applyTheme(localStorage.getItem(themeKey) || 'light');
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+      });
+    </script>
+  </body>
+</html>
