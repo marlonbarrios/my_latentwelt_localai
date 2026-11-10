@@ -30,18 +30,46 @@ The words on screen are written by a model running on your own computer. Nothing
 
 Each part of the installation is a separate program. You install them once. After that, the piece runs on this machine.
 
-| Piece | What it is | Where it lives |
-|-------|------------|----------------|
-| **My LatentWelt** | This project: the page, the pendulums, the prompts, and the local station | The project folder, opened in Cursor or VS Code |
-| **Node.js** and **npm** | The JavaScript runtime, and the tool that downloads this project’s libraries | Installed on the computer. `npm` comes with Node.js |
-| **Ollama** | The local server that runs open-source language models | [ollama.com](https://ollama.com/). It listens at `http://127.0.0.1:11434` |
-| **Gemma 4** | The default writer. It thinks, then answers. The thinking trace is removed before the text is drawn or spoken | Downloaded with `ollama pull gemma4` |
-| **Kokoro** | English voice, `af_heart` | Downloads into the browser the first time English is spoken, then stays cached |
-| **Supertonic 2** | Spanish, French, Portuguese, and Korean | Downloads into the browser the first time one of those languages is chosen |
-| **p5.js** | Draws the pendulums | Loaded by the page |
-| **Cursor** or **VS Code** | The editor where you open the project and use the terminal | [cursor.com](https://cursor.com/) or [code.visualstudio.com](https://code.visualstudio.com/) |
+| Piece | What it is | Download it here |
+|-------|------------|-----------------|
+| **Cursor** | The editor, with an AI chat that can guide the install | https://cursor.com/download |
+| **VS Code** | Another editor, if you do not want Cursor | https://code.visualstudio.com/download |
+| **Git** | The tool that copies this project from GitHub | https://git-scm.com/downloads |
+| **Node.js** | Runs the local station. The installer also gives you **npm** | https://nodejs.org/en/download |
+| **Ollama** | Runs the open-source language model on this computer | https://ollama.com/download |
+| **Gemma 4** | The writer. Page for the model; the download command is below | https://ollama.com/library/gemma4 |
+| **My LatentWelt** | This project. The green **Code** button, then **Download ZIP**, or the direct ZIP | https://github.com/marlonbarrios/my_latentwelt_localai |
+| **Kokoro** | English voice. The browser downloads it. This is its page | https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX |
+| **Supertonic 2** | Spanish, French, Portuguese, and Korean. The browser downloads it | https://huggingface.co/onnx-community/Supertonic-TTS-2-ONNX |
+| **p5.js** | Draws the pendulums. The page loads it. This is its home | https://p5js.org/ |
 
 Gemma 4 is the model this version expects. Any other model you have already pulled in Ollama can be selected later in a file named `.env`.
+
+Open WebUI is not part of this piece. It is an optional chat window for the same local models. On Windows 11, the full beginner path for Ollama, a first model, Python, and Open WebUI is a separate document: **[Beginner's guide to Ollama and Open WebUI](docs/ollama-and-open-webui-windows.md)**. Every installer in that guide has its own address. You can skip it if you only want the pendulums.
+
+---
+
+## Every download, in one list
+
+Open each address in the browser you already use. If you have no browser, install one first: [Google Chrome](https://www.google.com/chrome/) at https://www.google.com/chrome/ or [Mozilla Firefox](https://www.mozilla.org/firefox/new/) at https://www.mozilla.org/firefox/new/. Windows already includes Microsoft Edge.
+
+Click the address, or copy it into the address bar and press Enter. Download the installer for your computer (Windows, Mac, or Linux). Then run that installer.
+
+| What | Address to open |
+|------|-----------------|
+| Cursor | https://cursor.com/download |
+| VS Code, only if you skip Cursor | https://code.visualstudio.com/download |
+| Git | https://git-scm.com/downloads |
+| Node.js, which includes npm | https://nodejs.org/en/download |
+| Ollama | https://ollama.com/download |
+| Gemma 4, the model page | https://ollama.com/library/gemma4 |
+| This project on GitHub | https://github.com/marlonbarrios/my_latentwelt_localai |
+| This project as a ZIP file | https://github.com/marlonbarrios/my_latentwelt_localai/archive/refs/heads/main.zip |
+| Kokoro, the English voice | https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX |
+| Supertonic, the other four languages | https://huggingface.co/onnx-community/Supertonic-TTS-2-ONNX |
+| p5.js, the drawing library | https://p5js.org/ |
+
+Kokoro, Supertonic, and p5.js do not need a separate installer. The page fetches them. The links are there so you can see what they are. Gemma 4 is not a file you save from the browser. After Ollama is installed, a terminal command downloads it. That command is in step 4.
 
 ---
 
@@ -59,9 +87,9 @@ You can chat through the whole process. Paste an error from the terminal. Ask wh
 
 ### 1. Download Cursor
 
-1. Go to [cursor.com](https://cursor.com/) and download the installer for your system.
+1. Open https://cursor.com/download and download the installer for your system.
 2. Run the installer and open Cursor.
-3. You can also use VS Code from [code.visualstudio.com](https://code.visualstudio.com/). Install one of them. Cursor is the one with the chat that can stay with you through these steps.
+3. If you would rather use VS Code, open https://code.visualstudio.com/download instead. Install one of them. Cursor is the one with the chat that can stay with you through these steps.
 
 ### 2. What a terminal is
 
@@ -80,7 +108,7 @@ If a command says it is not recognized, the program is missing, or the terminal 
 
 Node.js runs the small local station that talks to Ollama. npm downloads the JavaScript libraries this repository lists.
 
-1. Go to [nodejs.org](https://nodejs.org/) and download the **LTS** installer.
+1. Open https://nodejs.org/en/download and download the **LTS** installer.
 2. Run it. Accept the option that adds Node to your PATH.
 3. Close every terminal that was already open, including Cursor’s, and open a new one.
 4. Check the install:
@@ -96,9 +124,9 @@ You should see two version numbers, not an error. Node.js 18 or newer is enough.
 
 Ollama is the program that holds the language model on this computer.
 
-1. Go to [ollama.com/download](https://ollama.com/download) and install Ollama.
+1. Open https://ollama.com/download and install Ollama.
 2. Open the Ollama application once so it is running. On macOS and Windows it then stays in the background. You do not type into the Ollama window for this piece.
-3. In a terminal, download the model this installation uses:
+3. The model page is https://ollama.com/library/gemma4. You do not download a file from that page. In a terminal, type:
 
 ```bash
 ollama pull gemma4
@@ -112,15 +140,21 @@ ollama list
 
 You should see `gemma4` in the list. Other models can sit beside it. This version uses `gemma4` unless `.env` names a different one.
 
+On Windows 11, the same Ollama install is explained more slowly, including an optional chat window called Open WebUI, in the **[Beginner's guide to Ollama and Open WebUI](docs/ollama-and-open-webui-windows.md)**. That guide is not required to run this piece.
+
 ### 5. Get the project and open it in Cursor
 
 If you already have the project folder, use that folder. It is the open-source models and local AI version of My LatentWelt.
 
-If you are copying it from a repository, either download the ZIP and unpack it, or, if Git is installed, clone it and move into the new folder:
+If you do not have it yet, download the ZIP from this address and unpack it:
+
+https://github.com/marlonbarrios/my_latentwelt_localai/archive/refs/heads/main.zip
+
+Or install Git from https://git-scm.com/downloads, open a terminal, and copy the project with these two lines:
 
 ```bash
-git clone <the repository address>
-cd <the project folder>
+git clone https://github.com/marlonbarrios/my_latentwelt_localai.git
+cd my_latentwelt_localai
 ```
 
 Then in Cursor choose **File → Open Folder** and select that folder. Do not open a single file. Open the folder that contains `package.json`.
@@ -392,6 +426,7 @@ If a step fails, open the Cursor chat, paste the terminal output, and ask it wha
 | `index.html` | Page shell and UI controls |
 | `style.css` | Themes and layout |
 | `public/screenshots/` | README images |
+| `docs/ollama-and-open-webui-windows.md` | Optional Windows guide: Ollama, a first model, and Open WebUI |
 
 ---
 
@@ -419,4 +454,4 @@ MIT License — Copyright (c) 2024–2026 Marlon Barrios Solano
 
 ---
 
-**Repository:** [github.com/marlonbarrios/my_pendular_umwelt](https://github.com/marlonbarrios/my_pendular_umwelt)
+**Repository:** [github.com/marlonbarrios/my_latentwelt_localai](https://github.com/marlonbarrios/my_latentwelt_localai)
