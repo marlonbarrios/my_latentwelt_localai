@@ -45,15 +45,15 @@ Each part of the installation is a separate program. You install them once. Afte
 
 Gemma 4 is the model this version expects. Any other model you have already pulled in Ollama can be selected later in a file named `.env`.
 
-Open WebUI is not part of this piece. It is an optional chat window for the same local models. On Windows 11, the full beginner path for Ollama, a first model, Python, and Open WebUI is a separate document: **[Beginner's guide to Ollama and Open WebUI](docs/ollama-and-open-webui-windows.md)**. Every installer in that guide has its own address. You can skip it if you only want the pendulums.
+Open WebUI is an optional chat window for the same local models. It is separate from the pendulums. The full beginner path for Ollama, a first model, Python, and Open WebUI, on a Mac and on a PC, is **[Beginner's guide to Ollama and Open WebUI](docs/ollama-and-open-webui.md)**. Every installer in that guide has its own address. Skip it if you only want this piece.
 
 ---
 
 ## Every download, in one list
 
-Open each address in the browser you already use. If you have no browser, install one first: [Google Chrome](https://www.google.com/chrome/) at https://www.google.com/chrome/ or [Mozilla Firefox](https://www.mozilla.org/firefox/new/) at https://www.mozilla.org/firefox/new/. Windows already includes Microsoft Edge.
+Open each address in the browser you already have. A PC includes Microsoft Edge. A Mac includes Safari. If you want another browser: [Google Chrome](https://www.google.com/chrome/) at https://www.google.com/chrome/ or [Mozilla Firefox](https://www.mozilla.org/firefox/new/) at https://www.mozilla.org/firefox/new/.
 
-Click the address, or copy it into the address bar and press Enter. Download the installer for your computer (Windows, Mac, or Linux). Then run that installer.
+Click the address, or copy it into the address bar and press Enter. When a page offers more than one file, choose the one for your computer. A PC wants the Windows file. A Mac wants the macOS file.
 
 | What | Address to open |
 |------|-----------------|
@@ -61,7 +61,9 @@ Click the address, or copy it into the address bar and press Enter. Download the
 | VS Code, only if you skip Cursor | https://code.visualstudio.com/download |
 | Git | https://git-scm.com/downloads |
 | Node.js, which includes npm | https://nodejs.org/en/download |
-| Ollama | https://ollama.com/download |
+| Ollama, the page that offers every system | https://ollama.com/download |
+| Ollama for a PC | https://ollama.com/download/windows |
+| Ollama for a Mac | https://ollama.com/download/mac |
 | Gemma 4, the model page | https://ollama.com/library/gemma4 |
 | This project on GitHub | https://github.com/marlonbarrios/my_latentwelt_localai |
 | This project as a ZIP file | https://github.com/marlonbarrios/my_latentwelt_localai/archive/refs/heads/main.zip |
@@ -77,6 +79,8 @@ Kokoro, Supertonic, and p5.js do not need a separate installer. The page fetches
 
 This path is for someone who has not used a terminal before. Do the steps in order. Each one is a separate install. Skipping one is the usual reason the page opens and then sits on *Receiving text…*.
 
+The piece itself is the same on a Mac and on a PC. The commands `npm install`, `ollama pull gemma4`, and `npm run dev:all` are the same. What changes is the installer you download, the name of the terminal, and where the Ollama icon sits after you open it. Each step below says which part is different.
+
 ### Cursor can guide you while you do this
 
 [Cursor](https://cursor.com/) is a code editor with an AI in the same window. After you open this project, open the chat and tell it where you are. For example: “I am installing My LatentWelt. I have not installed Node yet. What do I do next?”
@@ -87,9 +91,21 @@ You can chat through the whole process. Paste an error from the terminal. Ask wh
 
 ### 1. Download Cursor
 
-1. Open https://cursor.com/download and download the installer for your system.
-2. Run the installer and open Cursor.
-3. If you would rather use VS Code, open https://code.visualstudio.com/download instead. Install one of them. Cursor is the one with the chat that can stay with you through these steps.
+Open https://cursor.com/download and take the file for your computer. Install one editor. Cursor is the one with the chat that can stay with you through these steps. If you would rather use VS Code, the same split applies at https://code.visualstudio.com/download.
+
+**On a PC**
+
+1. Download the Windows installer.
+2. Open your **Downloads** folder and double-click that file.
+3. Follow the windows until the installer finishes.
+4. Open Cursor from the Start menu.
+
+**On a Mac**
+
+1. Download the Mac installer. If the page asks which Mac, open the Apple menu and choose **About This Mac**. **Apple silicon** is an M1, M2, M3, or M4. **Intel** is an older Mac.
+2. Open the downloaded file. If a window shows Cursor next to a folder named **Applications**, drag Cursor onto **Applications**.
+3. Open Cursor from **Applications**.
+4. If macOS asks whether to open an app from the internet, choose **Open**.
 
 ### 2. What a terminal is
 
@@ -97,21 +113,23 @@ A terminal is a text window where you type a command and the computer runs it. T
 
 You will use a terminal in two places:
 
-- **Inside Cursor.** This is the one to use for this project. Open the project folder first, then open the terminal. On Windows and Linux the shortcut is **Ctrl+`** (the key beside 1). On macOS it is **Control+`**. You can also use the menu **View → Terminal**. The line at the start of the terminal should be the project folder. Commands you type there apply to My LatentWelt.
-- **Outside Cursor.** This is the system terminal. On Windows, open **PowerShell** or **Terminal** from the Start menu. On macOS, open **Terminal** from Applications → Utilities. Use this one to confirm that Node and Ollama exist even when Cursor is closed. If you use it to run the piece, you must first move into the project folder with `cd`.
+- **Inside Cursor.** This is the one to use for this project. Open the project folder first, then open the terminal. On a PC the shortcut is **Ctrl+`** (the key beside 1). On a Mac it is **Control+`**. You can also use the menu **View → Terminal**. The line at the start of the terminal should be the project folder. Commands you type there apply to My LatentWelt.
+- **Outside Cursor.** This is the system terminal. On a PC, open **PowerShell** from the Start menu. On a Mac, open **Terminal** from **Applications → Utilities**. Use this one to confirm that Node and Ollama exist even when Cursor is closed. If you use it to run the piece, first move into the project folder with `cd`.
 
 A command is one line. `cd` means “change directory,” which means “move into this folder.” `npm` is the JavaScript package tool. It is not a separate download. It is installed when you install Node.js.
 
-If a command says it is not recognized, the program is missing, or the terminal was opened before the installer finished. Close that terminal, open a new one, and try again.
+A missing program looks different in the two terminals. On a PC, PowerShell says the command is not recognized. On a Mac, Terminal says `command not found`. In both cases, close that terminal, open a new one, and try again. The old window was often opened before the installer finished.
 
 ### 3. Install Node.js, which includes npm
 
 Node.js runs the small local station that talks to Ollama. npm downloads the JavaScript libraries this repository lists.
 
-1. Open https://nodejs.org/en/download and download the **LTS** installer.
-2. Run it. Accept the option that adds Node to your PATH.
+1. Open https://nodejs.org/en/download and download the **LTS** installer for your computer.
+2. Run that installer.
+   - **On a PC,** choose the Windows installer (`.msi`). Accept the option that adds Node to your PATH.
+   - **On a Mac,** choose the macOS installer (`.pkg`). The Mac installer has no PATH checkbox. Open the package and follow it to the end.
 3. Close every terminal that was already open, including Cursor’s, and open a new one.
-4. Check the install:
+4. Check the install. The two commands are the same on a PC and on a Mac:
 
 ```bash
 node -v
@@ -124,9 +142,24 @@ You should see two version numbers, not an error. Node.js 18 or newer is enough.
 
 Ollama is the program that holds the language model on this computer.
 
-1. Open https://ollama.com/download and install Ollama.
-2. Open the Ollama application once so it is running. On macOS and Windows it then stays in the background. You do not type into the Ollama window for this piece.
-3. The model page is https://ollama.com/library/gemma4. You do not download a file from that page. In a terminal, type:
+The model page is https://ollama.com/library/gemma4. Gemma 4 arrives through the terminal command below. The page is there so you can see which model you are getting.
+
+**On a PC**
+
+1. Open https://ollama.com/download/windows and download the Windows installer.
+2. Open your **Downloads** folder and double-click `OllamaSetup.exe`.
+3. Follow the installer. When it finishes, Ollama starts on its own.
+4. Look near the clock for the Ollama icon. It can also be opened from the Start menu. Leave it running. The piece talks to it in the background, at http://127.0.0.1:11434.
+
+**On a Mac**
+
+1. Open https://ollama.com/download/mac and download the Mac installer.
+2. Open `Ollama.dmg`.
+3. Drag **Ollama** onto **Applications**.
+4. Open Ollama from **Applications**. If macOS asks to install the command-line tool, allow it. That is what lets Terminal run `ollama`.
+5. Look in the menu bar at the top of the screen for the Ollama icon. Leave the app running. The piece talks to it in the background, at http://127.0.0.1:11434.
+
+**On a PC and on a Mac,** then type:
 
 ```bash
 ollama pull gemma4
@@ -140,17 +173,19 @@ ollama list
 
 You should see `gemma4` in the list. Other models can sit beside it. This version uses `gemma4` unless `.env` names a different one.
 
-On Windows 11, the same Ollama install is explained more slowly, including an optional chat window called Open WebUI, in the **[Beginner's guide to Ollama and Open WebUI](docs/ollama-and-open-webui-windows.md)**. That guide is not required to run this piece.
+The same Ollama install is explained more slowly, for a PC and for a Mac, in the **[Beginner's guide to Ollama and Open WebUI](docs/ollama-and-open-webui.md)**. That guide also installs an optional chat window. This piece runs without that window.
 
 ### 5. Get the project and open it in Cursor
 
 If you already have the project folder, use that folder. It is the open-source models and local AI version of My LatentWelt.
 
-If you do not have it yet, download the ZIP from this address and unpack it:
+If you do not have it yet, download the ZIP from this address:
 
 https://github.com/marlonbarrios/my_latentwelt_localai/archive/refs/heads/main.zip
 
-Or install Git from https://git-scm.com/downloads, open a terminal, and copy the project with these two lines:
+On a PC, open **Downloads**, right-click the ZIP, and choose **Extract All**. On a Mac, double-click the ZIP. Either computer creates a folder named `my_latentwelt_localai-main`. That folder is the project.
+
+Or install Git, then copy the project with a terminal. On a PC, download Git from https://git-scm.com/downloads and run the Windows installer. On a Mac, download Git from the same page, or type `git` once in Terminal and accept the offer to install Apple’s command-line tools. Then, on either computer:
 
 ```bash
 git clone https://github.com/marlonbarrios/my_latentwelt_localai.git
@@ -171,13 +206,27 @@ In Cursor’s terminal, from the project folder:
 npm install
 ```
 
-Wait until it finishes. If `npm` is not recognized, go back to step 3 and open a new terminal.
+Wait until it finishes. On a PC, if PowerShell says `npm` is not recognized, go back to step 3 and open a new terminal. On a Mac, if Terminal says `command not found`, do the same.
 
 Later, when you want the libraries to match `package.json` again, run `npm install` once more from this same folder. That is the update step. You do not reinstall Node.js for that.
 
 ### 7. Tell the station which model to use
 
-In the project folder, copy `.env.example` to a new file named `.env`. If `.env` is already there, leave it. It should contain:
+In the project folder, copy `.env.example` to a new file named `.env`. If `.env` is already there, leave it.
+
+On a PC, in PowerShell, from the project folder:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+On a Mac, in Terminal, from the project folder:
+
+```bash
+cp .env.example .env
+```
+
+The new file should contain:
 
 ```bash
 OLLAMA_HOST=http://127.0.0.1:11434
@@ -204,7 +253,9 @@ Open [http://localhost:5173/](http://localhost:5173/). Click the canvas once so 
 
 The first visit downloads the Kokoro English voice into the browser. The status line shows that progress. Choosing Spanish, French, Portuguese, or Korean downloads Supertonic the first time. Those voice files stay cached. The first passage can sit on *Receiving text…* while Gemma loads into memory. The pendulums keep moving during that wait.
 
-Leave the terminal open while you use the piece. Closing it, or pressing **Ctrl+C** in that terminal, stops the page.
+Leave the terminal open while you use the piece. Closing it stops the page. So does **Ctrl+C** on a PC, or **Control+C** on a Mac, in that same terminal.
+
+On a PC, open the page in Edge, Chrome, or Firefox. On a Mac, open it in Safari, Chrome, or Firefox. The address is the same.
 
 ### If something does not start
 
@@ -212,10 +263,11 @@ Paste the terminal text into the Cursor chat and say what you expected to happen
 
 | What you see | What it means |
 |--------------|----------------|
-| `npm` is not recognized | Node.js is missing, or this terminal was opened before Node was installed. Open a new terminal. |
+| `npm` is not recognized, on a PC | Node.js is missing, or this PowerShell window was opened before Node was installed. Open a new terminal. |
+| `command not found`, on a Mac | The same situation. Node or Ollama is missing, or Terminal was opened too early. Open a new Terminal window. |
 | The page does not load | `npm run dev:all` is not running, or it stopped. Start it again from the project folder. |
-| *Receiving text…* never changes | Ollama is not running, or `gemma4` was not pulled. Run `ollama list`. |
-| The voice is silent | Click the canvas once. The browser blocks sound until you click the page. |
+| *Receiving text…* never changes | Ollama is not running, or `gemma4` was not pulled. On a PC, check the icon near the clock. On a Mac, check the menu bar. Then run `ollama list`. |
+| The voice is silent | Click the canvas once. The browser blocks sound until you click the page. On a Mac, also check that the menu-bar volume is up. |
 | The drone is very quiet | **Sound on** is the pendulum tone. It sits under the voice. Headphones make it easier to hear. |
 
 ---
@@ -406,7 +458,7 @@ npm install
 npm run dev:all
 ```
 
-Then open [http://localhost:5173/](http://localhost:5173/), click the canvas, and press **Space**.
+Those three commands are the same on a Mac and on a PC. Then open [http://localhost:5173/](http://localhost:5173/), click the canvas, and press **Space**.
 
 `npm run server` is only the station (port 3001). `npm run dev` is only the page (port 5173). `npm run dev:all` starts both. Vite proxies `/api/chat` to the station, and the station calls Ollama. No API key is required.
 
@@ -426,7 +478,7 @@ If a step fails, open the Cursor chat, paste the terminal output, and ask it wha
 | `index.html` | Page shell and UI controls |
 | `style.css` | Themes and layout |
 | `public/screenshots/` | README images |
-| `docs/ollama-and-open-webui-windows.md` | Optional Windows guide: Ollama, a first model, and Open WebUI |
+| `docs/ollama-and-open-webui.md` | Optional Mac and PC guide: Ollama, a first model, and Open WebUI |
 
 ---
 
