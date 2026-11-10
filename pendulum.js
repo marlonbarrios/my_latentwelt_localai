@@ -804,18 +804,19 @@ const pendulumDrone = {
     const motion = Math.min(this.smoothedEnergy, 0.55);
     const { oscA, oscB, sub, filter, gain } = this.nodes;
     const t = ctx.currentTime;
-    const baseFreq = 52 + motion * 165;
+    // The original pair sits near 50–140 Hz, below what most speakers can play.
+    const baseFreq = (52 + motion * 165) * 2.6;
 
     oscA.frequency.setTargetAtTime(baseFreq, t, 0.14);
-    oscB.frequency.setTargetAtTime(baseFreq * 1.0045 + motion * 1.8, t, 0.14);
-    sub.frequency.setTargetAtTime(baseFreq * 0.498, t, 0.16);
-    filter.frequency.setTargetAtTime(180 + motion * 820, t, 0.16);
+    oscB.frequency.setTargetAtTime(baseFreq * 1.0045 + motion * 4.5, t, 0.14);
+    sub.frequency.setTargetAtTime(baseFreq * 0.5, t, 0.16);
+    filter.frequency.setTargetAtTime(420 + motion * 1400, t, 0.16);
 
     let targetGain = 0;
     if (isActive && enabled) {
-      targetGain = (0.028 + motion * 0.042) * 1.15;
+      targetGain = 0.1 + motion * 0.16;
       if (voicePlaying) {
-        targetGain *= 0.32;
+        targetGain *= 0.55;
       }
     }
 

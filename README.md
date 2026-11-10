@@ -18,7 +18,173 @@ The installation runs an open-source model locally through Ollama and speaks the
 
 In the browser, a local open-source model (Gemma 4 by default, with thinking on, or any other Ollama model) generates short philosophical texts from a Latentwelt system prompt. **Kokoro** reads English. **Supertonic** reads Spanish, French, Portuguese, and Korean. Both voices download into the browser. Branching pendulums inscribe the words along their moving trails — letter by letter, branch by branch, generation after generation.
 
-Powered by **Ollama**, **Gemma**, **Kokoro**, **Supertonic**, and **p5.js**. Open-source models, local AI.
+Powered by **Ollama**, **Gemma**, **Kokoro**, **Supertonic**, and **p5.js**.
+
+**Open-source models and local AI version.**
+
+The words on screen are written by a model running on your own computer. Nothing in the live piece calls a remote language service, and no API key is required. Speech is synthesized in the browser.
+
+---
+
+## Models and applications
+
+Each part of the installation is a separate program. You install them once. After that, the piece runs on this machine.
+
+| Piece | What it is | Where it lives |
+|-------|------------|----------------|
+| **My LatentWelt** | This project: the page, the pendulums, the prompts, and the local station | The project folder, opened in Cursor or VS Code |
+| **Node.js** and **npm** | The JavaScript runtime, and the tool that downloads this project’s libraries | Installed on the computer. `npm` comes with Node.js |
+| **Ollama** | The local server that runs open-source language models | [ollama.com](https://ollama.com/). It listens at `http://127.0.0.1:11434` |
+| **Gemma 4** | The default writer. It thinks, then answers. The thinking trace is removed before the text is drawn or spoken | Downloaded with `ollama pull gemma4` |
+| **Kokoro** | English voice, `af_heart` | Downloads into the browser the first time English is spoken, then stays cached |
+| **Supertonic 2** | Spanish, French, Portuguese, and Korean | Downloads into the browser the first time one of those languages is chosen |
+| **p5.js** | Draws the pendulums | Loaded by the page |
+| **Cursor** or **VS Code** | The editor where you open the project and use the terminal | [cursor.com](https://cursor.com/) or [code.visualstudio.com](https://code.visualstudio.com/) |
+
+Gemma 4 is the model this version expects. Any other model you have already pulled in Ollama can be selected later in a file named `.env`.
+
+---
+
+## Install it on a new computer
+
+This path is for someone who has not used a terminal before. Do the steps in order. Each one is a separate install. Skipping one is the usual reason the page opens and then sits on *Receiving text…*.
+
+### Cursor can guide you while you do this
+
+[Cursor](https://cursor.com/) is a code editor with an AI in the same window. After you open this project, open the chat and tell it where you are. For example: “I am installing My LatentWelt. I have not installed Node yet. What do I do next?”
+
+You can chat through the whole process. Paste an error from the terminal. Ask what a command means. Ask it to look at this README and walk you one step at a time. The AI can see the project files and the terminal, so it can tell the difference between a missing program, a model that was not downloaded, and a server that is not running.
+
+[VS Code](https://code.visualstudio.com/) can open the same folder if you prefer that editor. The steps below are the same. The built-in guide described here is Cursor’s chat.
+
+### 1. Download Cursor
+
+1. Go to [cursor.com](https://cursor.com/) and download the installer for your system.
+2. Run the installer and open Cursor.
+3. You can also use VS Code from [code.visualstudio.com](https://code.visualstudio.com/). Install one of them. Cursor is the one with the chat that can stay with you through these steps.
+
+### 2. What a terminal is
+
+A terminal is a text window where you type a command and the computer runs it. There is no button for `npm install`. You type that line and press Enter.
+
+You will use a terminal in two places:
+
+- **Inside Cursor.** This is the one to use for this project. Open the project folder first, then open the terminal. On Windows and Linux the shortcut is **Ctrl+`** (the key beside 1). On macOS it is **Control+`**. You can also use the menu **View → Terminal**. The line at the start of the terminal should be the project folder. Commands you type there apply to My LatentWelt.
+- **Outside Cursor.** This is the system terminal. On Windows, open **PowerShell** or **Terminal** from the Start menu. On macOS, open **Terminal** from Applications → Utilities. Use this one to confirm that Node and Ollama exist even when Cursor is closed. If you use it to run the piece, you must first move into the project folder with `cd`.
+
+A command is one line. `cd` means “change directory,” which means “move into this folder.” `npm` is the JavaScript package tool. It is not a separate download. It is installed when you install Node.js.
+
+If a command says it is not recognized, the program is missing, or the terminal was opened before the installer finished. Close that terminal, open a new one, and try again.
+
+### 3. Install Node.js, which includes npm
+
+Node.js runs the small local station that talks to Ollama. npm downloads the JavaScript libraries this repository lists.
+
+1. Go to [nodejs.org](https://nodejs.org/) and download the **LTS** installer.
+2. Run it. Accept the option that adds Node to your PATH.
+3. Close every terminal that was already open, including Cursor’s, and open a new one.
+4. Check the install:
+
+```bash
+node -v
+npm -v
+```
+
+You should see two version numbers, not an error. Node.js 18 or newer is enough.
+
+### 4. Install Ollama and download Gemma 4
+
+Ollama is the program that holds the language model on this computer.
+
+1. Go to [ollama.com/download](https://ollama.com/download) and install Ollama.
+2. Open the Ollama application once so it is running. On macOS and Windows it then stays in the background. You do not type into the Ollama window for this piece.
+3. In a terminal, download the model this installation uses:
+
+```bash
+ollama pull gemma4
+```
+
+Gemma 4 is several gigabytes. Wait until the command finishes. Then check that it is there:
+
+```bash
+ollama list
+```
+
+You should see `gemma4` in the list. Other models can sit beside it. This version uses `gemma4` unless `.env` names a different one.
+
+### 5. Get the project and open it in Cursor
+
+If you already have the project folder, use that folder. It is the open-source models and local AI version of My LatentWelt.
+
+If you are copying it from a repository, either download the ZIP and unpack it, or, if Git is installed, clone it and move into the new folder:
+
+```bash
+git clone <the repository address>
+cd <the project folder>
+```
+
+Then in Cursor choose **File → Open Folder** and select that folder. Do not open a single file. Open the folder that contains `package.json`.
+
+In the Cursor chat you can say: “This is My LatentWelt, the local AI version. Help me install the dependencies and start it.”
+
+### 6. Download the JavaScript dependencies
+
+The repository does not contain the libraries themselves. `package.json` names them. npm downloads them into a folder called `node_modules`.
+
+In Cursor’s terminal, from the project folder:
+
+```bash
+npm install
+```
+
+Wait until it finishes. If `npm` is not recognized, go back to step 3 and open a new terminal.
+
+Later, when you want the libraries to match `package.json` again, run `npm install` once more from this same folder. That is the update step. You do not reinstall Node.js for that.
+
+### 7. Tell the station which model to use
+
+In the project folder, copy `.env.example` to a new file named `.env`. If `.env` is already there, leave it. It should contain:
+
+```bash
+OLLAMA_HOST=http://127.0.0.1:11434
+OLLAMA_MODEL=gemma4
+OLLAMA_THINK=true
+```
+
+`OLLAMA_THINK=true` lets Gemma 4 think before it answers. The piece removes that thinking trace and speaks only the prose. Set it to `false` only if you point `OLLAMA_MODEL` at a model that should answer in one pass.
+
+### 8. Start the piece
+
+Still in the project folder:
+
+```bash
+npm run dev:all
+```
+
+That starts two processes and leaves them running:
+
+- the page at [http://localhost:5173/](http://localhost:5173/)
+- the station at [http://localhost:3001/](http://localhost:3001/), which calls Ollama
+
+Open [http://localhost:5173/](http://localhost:5173/). Click the canvas once so the browser allows sound. Leave **Sound on**. Press **Space**.
+
+The first visit downloads the Kokoro English voice into the browser. The status line shows that progress. Choosing Spanish, French, Portuguese, or Korean downloads Supertonic the first time. Those voice files stay cached. The first passage can sit on *Receiving text…* while Gemma loads into memory. The pendulums keep moving during that wait.
+
+Leave the terminal open while you use the piece. Closing it, or pressing **Ctrl+C** in that terminal, stops the page.
+
+### If something does not start
+
+Paste the terminal text into the Cursor chat and say what you expected to happen. These are the usual cases:
+
+| What you see | What it means |
+|--------------|----------------|
+| `npm` is not recognized | Node.js is missing, or this terminal was opened before Node was installed. Open a new terminal. |
+| The page does not load | `npm run dev:all` is not running, or it stopped. Start it again from the project folder. |
+| *Receiving text…* never changes | Ollama is not running, or `gemma4` was not pulled. Run `ollama list`. |
+| The voice is silent | Click the canvas once. The browser blocks sound until you click the page. |
+| The drone is very quiet | **Sound on** is the pendulum tone. It sits under the voice. Headphones make it easier to hear. |
+
+---
 
 ## Last update
 
@@ -196,42 +362,21 @@ Two root pendulums are tethered together; two child branches attach at parent jo
 
 ---
 
-## Setup
+## Setup, short form
 
-### Prerequisites
-- Node.js 18+
-- [Ollama](https://ollama.com/) running on this machine
-- A browser with internet access the first time, so Kokoro (and Supertonic, if you leave English) can download its voice model. The models stay cached afterward
+The full beginner path is **Install it on a new computer**, above. If the tools are already installed, the short form is:
 
-### Installation
+```bash
+ollama pull gemma4
+npm install
+npm run dev:all
+```
 
-1. Clone the repository and install dependencies:
-   ```bash
-   npm install
-   ```
+Then open [http://localhost:5173/](http://localhost:5173/), click the canvas, and press **Space**.
 
-2. Pull a model if you do not already have one. Gemma 4 is the default:
-   ```bash
-   ollama pull gemma4
-   ```
+`npm run server` is only the station (port 3001). `npm run dev` is only the page (port 5173). `npm run dev:all` starts both. Vite proxies `/api/chat` to the station, and the station calls Ollama. No API key is required.
 
-3. Optional `.env` (see `.env.example`):
-   ```bash
-   OLLAMA_HOST=http://127.0.0.1:11434
-   OLLAMA_MODEL=gemma4
-   OLLAMA_THINK=true
-   ```
-   Set `OLLAMA_THINK=false` for a model that should answer in one pass.
-
-4. Start the station and the app:
-   ```bash
-   npm run dev:all
-   ```
-   Or separately: `npm run server` (port 3001) and `npm run dev` (port 5173).
-
-5. Open [http://localhost:5173/](http://localhost:5173/)
-
-The first visit downloads the Kokoro voice into the browser. Choosing Spanish, French, Portuguese, or Korean downloads Supertonic the first time. The status line shows that progress. Then press **Spacebar**. Vite proxies `/api/chat` to the local station, which calls Ollama. No API key is required.
+If a step fails, open the Cursor chat, paste the terminal output, and ask it what to do next. The AI in Cursor can walk through the rest of the install with you.
 
 ---
 
